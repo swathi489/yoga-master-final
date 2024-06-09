@@ -9,7 +9,7 @@ const useAxiosSecure = () => {
 
   const axiosSecure = axios.create({
     baseURL: "https://yoga-master-server-991u.onrender.com/",
-    withCredentials: true, // Add this line
+    // withCredentials: true, // Add this line
   });
 
   useEffect(() => {
