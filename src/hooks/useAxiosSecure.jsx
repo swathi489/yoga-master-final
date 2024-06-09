@@ -9,6 +9,7 @@ const useAxiosSecure = () => {
 
   const axiosSecure = axios.create({
     baseURL: "https://yoga-master-server-991u.onrender.com/",
+    withCredentials: true, // Add this line
   });
 
   useEffect(() => {
@@ -20,8 +21,11 @@ const useAxiosSecure = () => {
           config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
+      },
+      (error) => {
+        return Promise.reject(error);
       }
-    )
+    );
 
     // Add a response interceptor
     const responseInterceptor = axiosSecure.interceptors.response.use(
@@ -35,7 +39,7 @@ const useAxiosSecure = () => {
           navigate("/login");
           throw error;
         }
-        throw error;
+        return Promise.reject(error);
       }
     );
 
@@ -43,7 +47,7 @@ const useAxiosSecure = () => {
       axiosSecure.interceptors.request.eject(requestInterceptor);
       axiosSecure.interceptors.response.eject(responseInterceptor);
     };
-  }, [logout, navigate, axiosSecure]);
+  }, [logout, navigate]);
 
   return axiosSecure;
 };
