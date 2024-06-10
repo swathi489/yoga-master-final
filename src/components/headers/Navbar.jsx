@@ -44,6 +44,10 @@ const Navbar = () => {
     setIsMobileMenuOpen(isSmallScreen ? !isMobileMenuOpen : false);
   };
 
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   useEffect(() => {
     const darkClass = "dark";
     const root = window.document.documentElement;
@@ -112,6 +116,8 @@ const Navbar = () => {
               text: "You have been logged out successfully.",
               icon: "success",
             });
+            navigate("/");
+            closeMobileMenu();
           })
           .catch((error) => console.log(error));
       }
@@ -132,7 +138,10 @@ const Navbar = () => {
         <div className="px-4 py-4 flex items-center justify-between">
           {/* Logo */}
           <div
-            onClick={() => navigate("/")}
+            onClick={() => {
+              navigate("/");
+              closeMobileMenu();
+            }}
             className="flex-shrink-0 cursor-pointer pl-7 md:p-0 flex items-center"
           >
             <div>
@@ -165,6 +174,7 @@ const Navbar = () => {
                   <li key={link.route}>
                     <NavLink
                       to={link.route}
+                      onClick={closeMobileMenu}
                       className="block px-4 py-2 text-center bg-yellow-100 text-teal-500 hover:bg-blue-600 dark:hover:bg-gray-800 transition-colors duration-300"
                       style={{
                         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
@@ -174,17 +184,44 @@ const Navbar = () => {
                     </NavLink>
                   </li>
                 ))}
-                {user && (
+                {user ? (
+                  <>
+                    <li>
+                      <NavLink
+                        to="/dashboard"
+                        onClick={closeMobileMenu}
+                        className="block px-4 py-2 text-center text-teal-800 bg-pink-100 rounded-xl hover:bg-red-600 transition-colors duration-300"
+                        style={{
+                          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                        }}
+                      >
+                        Dashboard
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        onClick={handleLogout}
+                        to="#"
+                        className="block px-4 py-2 text-center text-teal-800 bg-pink-100 rounded-xl hover:bg-red-600 transition-colors duration-300"
+                        style={{
+                          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                        }}
+                      >
+                        Logout
+                      </NavLink>
+                    </li>
+                  </>
+                ) : (
                   <li>
                     <NavLink
-                      onClick={handleLogout}
-                      to="#"
+                      to="/login"
+                      onClick={closeMobileMenu}
                       className="block px-4 py-2 text-center text-teal-800 bg-pink-100 rounded-xl hover:bg-red-600 transition-colors duration-300"
                       style={{
                         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
                       }}
                     >
-                      Logout
+                      Login
                     </NavLink>
                   </li>
                 )}
