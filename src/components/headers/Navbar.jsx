@@ -145,11 +145,11 @@ const Navbar = () => {
             className="flex-shrink-0 cursor-pointer pl-7 md:p-0 flex items-center"
           >
             <div>
-              <h1 className="text-2xl inline-flex gap-3 text-gray-300 items-center font-bold">
+              <h1 className="text-2xl inline-flex gap-3 text-white items-center font-bold">
                 YogaMaiyam
                 <img src="/yoga-logo.png" className="w-8 h-8" alt="" />
               </h1>
-              <p className="font-bold text-gray-200 text-[13px] tracking-[8px]">
+              <p className="font-bold text-white text-[13px] tracking-[8px]">
                 Quick Explorer
               </p>
             </div>
@@ -168,14 +168,14 @@ const Navbar = () => {
 
           {/* Dropdown for mobile */}
           {isMobileMenuOpen && (
-            <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-black dark:text-white text-black z-10">
+            <div className="md:hidden absolute top-full left-0 w-full bg-transparent backdrop-filter backdrop-blur-lg dark:bg-transparent dark:backdrop-filter dark:backdrop-blur-lg z-10">
               <ul className="py-2">
                 {navLinks.map((link) => (
                   <li key={link.route}>
                     <NavLink
                       to={link.route}
                       onClick={closeMobileMenu}
-                      className="block px-4 py-2 text-center bg-yellow-100 text-teal-500 hover:bg-blue-600 dark:hover:bg-gray-800 transition-colors duration-300"
+                      className="block px-4 py-2 text-center bg-transparent font-bold text-white hover:bg-blue-600 dark:hover:bg-gray-800 transition-colors duration-300"
                       style={{
                         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
                       }}
@@ -190,7 +190,7 @@ const Navbar = () => {
                       <NavLink
                         to="/dashboard"
                         onClick={closeMobileMenu}
-                        className="block px-4 py-2 text-center text-teal-800 bg-pink-100 rounded-xl hover:bg-red-600 transition-colors duration-300"
+                        className="block px-4 py-2 text-center font-bold text-white bg-transparent rounded-xl hover:bg-red-600 transition-colors duration-300"
                         style={{
                           boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
                         }}
@@ -202,7 +202,7 @@ const Navbar = () => {
                       <NavLink
                         onClick={handleLogout}
                         to="#"
-                        className="block px-4 py-2 text-center text-teal-800 bg-pink-100 rounded-xl hover:bg-red-600 transition-colors duration-300"
+                        className="block px-4 py-2 text-center font-bold  text-white bg-transparent rounded-xl hover:bg-red-600 transition-colors duration-300"
                         style={{
                           boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
                         }}
@@ -216,7 +216,7 @@ const Navbar = () => {
                     <NavLink
                       to="/login"
                       onClick={closeMobileMenu}
-                      className="block px-4 py-2 text-center text-teal-800 bg-pink-100 rounded-xl hover:bg-red-600 transition-colors duration-300"
+                      className="block px-4 py-2 text-center text-white bg-transparent rounded-xl hover:bg-red-600 transition-colors duration-300"
                       style={{
                         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
                       }}
